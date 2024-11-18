@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: go-oracle-app
+    env_file:
+      - .env # Carrega as variáveis de ambiente do arquivo .env
+    environment:
+      - LD_LIBRARY_PATH=/opt/oracle # Necessário para o Oracle Instant Client
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
